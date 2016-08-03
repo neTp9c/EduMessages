@@ -1,13 +1,16 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Microsoft.Owin.Security;
+using Owin;
 using System.Reflection;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Messages.Web
 {
-    public class AutofacConfig
+    public partial class Startup
     {
-        public static void ConfigureContainer()
+        public void ConfigureAutofac(IAppBuilder app)
         {
             var builder = new ContainerBuilder();
 
@@ -28,14 +31,19 @@ namespace Messages.Web
             builder.RegisterFilterProvider();
 
 
+
             // Custom
-            // Register our Business dependencies
             builder.RegisterModule(new Business.AutofacModule());
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>();
+
 
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+            app.UseAutofacMiddleware(container);
+            app.UseAutofacMvc();
         }
     }
 }

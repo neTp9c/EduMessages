@@ -2,10 +2,7 @@
 using Messages.Entities;
 using Messages.Web.Navigation;
 using Messages.Web.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 
 namespace Messages.Web.Controllers
@@ -34,12 +31,14 @@ namespace Messages.Web.Controllers
             return View(viewModel);
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             var viewModel = new MessageCreateVM();
             return View(viewModel);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(MessageCreateVM viewModel)
@@ -48,7 +47,8 @@ namespace Messages.Web.Controllers
             {
                 var message = new Message
                 {
-                    Body = viewModel.Body
+                    Body = viewModel.Body,
+                    UserId = User.Identity.GetUserId()
                 };
 
                 _messagesManager.Create(message);

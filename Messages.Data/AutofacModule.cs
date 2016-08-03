@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Messages.Data.DbConnections;
+using Messages.Data.Identity;
 using Messages.Data.MsSql;
 using Messages.Data.SqlLite;
 
@@ -19,6 +20,8 @@ namespace Messages.Data
 
             builder.RegisterType<ConnectionStringSettingsAccessor>().As<IConnectionStringSettingsAccessor>().SingleInstance();
             builder.RegisterType<MessagesContextAccessor>().As<IMessagesContextAccessor>().InstancePerRequest();
+
+            builder.RegisterType<UserStore>();
 
             base.Load(builder);
         }

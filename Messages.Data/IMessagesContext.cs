@@ -1,11 +1,10 @@
-﻿using Messages.Entities;
+﻿using Messages.Data.Identity;
+using Messages.Entities;
+using Messages.Entities.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Messages.Data
 {
@@ -15,7 +14,7 @@ namespace Messages.Data
         int SaveChanges();
     }
 
-    public abstract class BaseMessagesContext : DbContext, IMessagesContext
+    public abstract class BaseMessagesContext : IdentityDbContext<User>, IMessagesContext
     {
         public BaseMessagesContext(string nameOrConnectionString) : base(nameOrConnectionString)
         {

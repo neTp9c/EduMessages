@@ -1,4 +1,7 @@
 ﻿using Autofac;
+using Messages.Business.Identity;
+using Microsoft.Owin.Security;
+using System.Web;
 
 namespace Messages.Business
 {
@@ -9,6 +12,8 @@ namespace Messages.Business
             builder.RegisterModule(new Data.AutofacModule());
 
             builder.RegisterType<MessagesManager>().As<IMessagesManager>().InstancePerLifetimeScope();
+            builder.RegisterType<UserManager>().InstancePerLifetimeScope();
+            builder.RegisterType<SignInManager>().InstancePerLifetimeScope();
 
             base.Load(builder);
         }
