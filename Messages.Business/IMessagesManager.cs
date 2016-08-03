@@ -13,13 +13,16 @@ namespace Messages.Business
     {
         void Create(Message message);
 
-        IEnumerable<Message> GetMessages(int skip = 0, int take = int.MaxValue);
-        IEnumerable<Message> GetMessages(Expression<Func<Message, bool>> wherePredicate, int skip = 0, int take = int.MaxValue);
+        IEnumerable<Message> GetMessages(int skip, int take);
+
+        IEnumerable<Message> GetMessages(
+            int skip = 0,
+            int take = int.MaxValue,
+            Expression<Func<Message, bool>> wherePredicate = null,
+            IEnumerable<string> includePaths = null);
 
         int GetCount();
         int GetCount(Expression<Func<Message, bool>> wherePredicate);
-
-
     }
 
     public class MessagesManager : IMessagesManager
@@ -42,31 +45,66 @@ namespace Messages.Business
             _messagesContext.SaveChanges();
         }
 
-        public IEnumerable<Message> GetMessages(int skip = 0, int take = int.MaxValue)
+        public IEnumerable<Message> GetMessages(int skip, int take)
         {
-            return _messagesContext.Messages
-                .OrderByDescending(m => m.CreatedUtc)
-                .Skip(skip)
-                .Take(take);
+            return GetMessages(
+                skip: skip,
+                take: take,
+                wherePredicate: null,
+                includePaths: null);
         }
 
-        public IEnumerable<Message> GetMessages(Expression<Func<Message, bool>> wherePredicate, int skip = 0, int take = int.MaxValue)
+        public IEnumerable<Message> GetMessages(
+            int skip = 0,
+            int take = int.MaxValue,
+            Expression<Func<Message, bool>> wherePredicate = null,
+            IEnumerable<string> includePaths = null)
         {
-            return _messagesContext.Messages
-                .Where(wherePredicate)
-                .OrderByDescending(m => m.CreatedUtc)
-                .Skip(skip)
-                .Take(take);
+            var query = _messagesContext.Messages.AsQueryable<Message>();
+
+            if(wherePredicate != null)
+            {
+                query = query.Where(wherePredicate);
+            }
+
+            query = query.OrderByDescending(m => m.CreatedUtc);
+
+            if(skip > 0)
+            {
+                query = query.Skip(skip);
+            }
+
+            if(take < int.MaxValue)
+            {
+                query = query.Take(take);
+            }
+
+            if(includePaths != null)
+            {
+                foreach(var includePath in includePaths)
+                {
+                    query = query.Include(includePath);
+                }
+            }
+
+            return query.ToList();
         }
 
         public int GetCount()
         {
-            return _messagesContext.Messages.Count();
+            return GetCount(null);
         }
 
         public int GetCount(Expression<Func<Message, bool>> wherePredicate)
         {
-            return _messagesContext.Messages.Count(wherePredicate);
+            var query = _messagesContext.Messages.AsQueryable<Message>();
+
+            if (wherePredicate != null)
+            {
+                query = query.Where(wherePredicate);
+            }
+
+            return query.Count();
         }
     }
 }

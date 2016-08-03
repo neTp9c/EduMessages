@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Messages.Entities.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace Messages.Entities
         public string UserId { get; set; }
         public string Body { get; set; }
         public DateTime CreatedUtc { get; set; }
+
+        public virtual User User { get; set; }
 
     }
 }

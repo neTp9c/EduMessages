@@ -230,6 +230,7 @@
     <Compile Include="Navigation\HtmlHelperExtensions.cs" />
     <Compile Include="Navigation\Pager.cs" />
     <Compile Include="Navigation\PagerParameters.cs" />
+    <Compile Include="Navigation\UrlHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountManage\AddPhoneNumberViewModel.cs" />
@@ -237,8 +238,8 @@
     <Compile Include="ViewModels\AccountManage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\MessageListVM.cs" />
-    <Compile Include="ViewModels\MessageCreateVM.cs" />
+    <Compile Include="ViewModels\Messages\MessageListVM.cs" />
+    <Compile Include="ViewModels\Messages\MessageCreateVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -33,6 +33,10 @@ namespace Messages.Data
 
             // configure conventions
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<Message>()
+                        .HasRequired<User>(s => s.User) // Student entity requires Standard 
+                        .WithMany(s => s.Messages); // Standard entity includes many Students entities
         }
     }
 }

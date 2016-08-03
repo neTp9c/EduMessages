@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -15,5 +16,7 @@ namespace Messages.Entities.Identity
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual ICollection<Message> Messages { get; set; }
     }
 }

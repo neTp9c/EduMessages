@@ -26,7 +26,9 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserId)
+                <a href="@Url.Action("List", "Messages", new { userId = item.User.Id })">
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedUtc)
@@ -40,6 +42,6 @@
 
 @Html.BootstrapPager(
     page: Model.Pager.Page,
-    action: page => Url.Action("List", "Messages", new { page = page }),
+    action: page => Url.ChangePage(page),
     totalItems: Model.TotalCount,
     pageSize: Model.Pager.PageSize)

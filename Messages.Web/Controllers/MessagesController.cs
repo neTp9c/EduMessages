@@ -3,6 +3,8 @@ using Messages.Entities;
 using Messages.Web.Navigation;
 using Messages.Web.ViewModels;
 using Microsoft.AspNet.Identity;
+using System;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 
 namespace Messages.Web.Controllers
@@ -16,16 +18,29 @@ namespace Messages.Web.Controllers
             _messagesManager = messagesManager;
         }
 
-        public ActionResult List(PagerParameters pagerParameters)
+        public ActionResult List(string userId, PagerParameters pagerParameters)
         {
             var pager = new Pager(pagerParameters);
-            var messages = _messagesManager.GetMessages((pager.Page - 1) * pager.PageSize, pager.PageSize);
+
+            Expression<Func<Message, bool>> wherePredicate = null;
+
+            if(userId != null)
+            {
+                wherePredicate = m => m.UserId == userId;
+            }
+
+            var messages = _messagesManager.GetMessages(
+                skip: (pager.Page - 1) * pager.PageSize,
+                take: pager.PageSize,
+                wherePredicate: wherePredicate,
+                includePaths: new string[] { "User" }
+            );
 
             var viewModel = new MessageListVM
             {
                 Messages = messages,
                 Pager = pager,
-                TotalCount = _messagesManager.GetCount()
+                TotalCount = _messagesManager.GetCount(wherePredicate)
             };
 
             return View(viewModel);
