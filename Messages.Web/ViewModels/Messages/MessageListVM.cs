@@ -10,5 +10,6 @@ namespace Messages.Web.ViewModels
         public IEnumerable<Message> Messages { get; set; }
         public Pager Pager { get; set; }
         public int TotalCount { get; set; }
+        public bool IsFiltered { get; set; }
     }
 }

@@ -8,6 +8,12 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@if (Model.IsFiltered)
+{
+    <p>
+        <a href="@Url.ClearFilters()">Clear filters</a>
+    </p>
+}
 <table class="table">
     <tr>
         <th>

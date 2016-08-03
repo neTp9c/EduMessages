@@ -24,9 +24,11 @@ namespace Messages.Web.Controllers
 
             Expression<Func<Message, bool>> wherePredicate = null;
 
+            var isFiltered = false;
             if(userId != null)
             {
                 wherePredicate = m => m.UserId == userId;
+                isFiltered = true;
             }
 
             var messages = _messagesManager.GetMessages(
@@ -40,7 +42,8 @@ namespace Messages.Web.Controllers
             {
                 Messages = messages,
                 Pager = pager,
-                TotalCount = _messagesManager.GetCount(wherePredicate)
+                TotalCount = _messagesManager.GetCount(wherePredicate),
+                IsFiltered = isFiltered
             };
 
             return View(viewModel);

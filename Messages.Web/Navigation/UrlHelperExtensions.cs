@@ -42,5 +42,14 @@ namespace Messages.Web.Navigation
                 newRouteValues
             );
         }
+
+        public static string ClearFilters(this UrlHelper urlHelper)
+        {
+            var routeValues = urlHelper.RequestContext.RouteData.Values;
+            return urlHelper.Action(
+               routeValues["action"].ToString(),
+               routeValues["controller"].ToString(),
+               routeValues);
+        }
     }
 }
