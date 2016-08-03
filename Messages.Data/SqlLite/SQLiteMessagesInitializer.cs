@@ -1,10 +1,5 @@
 ﻿using SQLite.CodeFirst;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Messages.Data.SqlLite
 {
@@ -14,7 +9,7 @@ namespace Messages.Data.SqlLite
 
         protected override void Seed(SqLiteMessagesContext context)
         {
-
+            base.Seed(context);
         }
     }
 }

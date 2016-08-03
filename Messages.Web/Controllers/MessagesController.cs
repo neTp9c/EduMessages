@@ -10,11 +10,11 @@ namespace Messages.Web.Controllers
 {
     public class MessagesController : Controller
     {
-        private readonly MessagesManager _messagesManager;
+        private readonly IMessagesManager _messagesManager;
 
-        public MessagesController()
+        public MessagesController(IMessagesManager messagesManager)
         {
-            _messagesManager = new MessagesManager();
+            _messagesManager = messagesManager;
         }
 
 

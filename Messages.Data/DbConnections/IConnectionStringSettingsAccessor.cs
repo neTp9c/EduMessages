@@ -3,7 +3,12 @@ using System.Configuration;
 
 namespace Messages.Data.DbConnections
 {
-    public class ConnectionStringSettingsAccessor
+    public interface IConnectionStringSettingsAccessor
+    {
+        ConnStringSettings Settings();
+    }
+
+    public class ConnectionStringSettingsAccessor : IConnectionStringSettingsAccessor
     {
         private ConnStringSettings _settings;
 
