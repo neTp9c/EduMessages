@@ -1,7 +1,45 @@
-﻿
+﻿@model Messages.Web.ViewModels.MessageListVM
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "List of messages";
 }
 
-<h2>Index</h2>
+<h2>List of messages</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            User
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Message
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Messages)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedUtc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.BootstrapPager(
+    page: Model.Pager.Page,
+    action: page => Url.Action("List", "Messages", new { page = page }),
+    totalItems: Model.TotalCount,
+    pageSize: Model.Pager.PageSize)

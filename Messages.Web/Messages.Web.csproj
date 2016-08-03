@@ -135,6 +135,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Messages\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -173,10 +174,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Navigation\HtmlHelperExtensions.cs" />
+    <Compile Include="Navigation\Pager.cs" />
+    <Compile Include="Navigation\PagerParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\MessageListVM.cs" />
+    <Compile Include="ViewModels\MessageCreateVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="HtmlHelpers\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
