@@ -161,6 +161,16 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Messages.Business\Messages.Business.csproj">
+      <Project>{b0c0b25d-9e61-4ed7-8ef5-11b90d6aa1ab}</Project>
+      <Name>Messages.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Messages.Entities\Messages.Entities.csproj">
+      <Project>{a44934dc-6095-4061-85fc-7198fde1ea3f}</Project>
+      <Name>Messages.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
