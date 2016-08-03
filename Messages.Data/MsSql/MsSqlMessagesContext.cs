@@ -9,20 +9,19 @@ using System.Threading.Tasks;
 
 namespace Messages.Data
 {
-    public class MessagesContext : DbContext
+    public class MsSqlMessagesContext : BaseMessagesContext
     {
-        public MessagesContext() : base("MessagesContext")
+        public MsSqlMessagesContext() : base("MessagesContext")
         {
 
         }
-
-        public DbSet<Message> Messages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            // set initializer
+            Database.SetInitializer(new MsSqlMessagesInitializer());
         }
 
         private void FixEfProviderServicesProblem()

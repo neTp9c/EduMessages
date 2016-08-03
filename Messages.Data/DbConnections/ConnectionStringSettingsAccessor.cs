@@ -35,6 +35,7 @@ namespace Messages.Data.DbConnections
                 case "System.Data.SqlClient":
                     return ConnectionStringProviders.SqlClient;
                 case "System.Data.SQLite.EF6":
+                case "System.Data.SQLite":
                     return ConnectionStringProviders.SQLite;
                 default:
                     throw new ArgumentOutOfRangeException(
