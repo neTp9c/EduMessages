@@ -1,9 +1,11 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
 using Microsoft.Owin.Security;
 using Owin;
 using System.Reflection;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace Messages.Web
@@ -14,6 +16,19 @@ namespace Messages.Web
         {
             var builder = new ContainerBuilder();
 
+            BuildMvc(builder);
+            BuildWebApi(builder);
+            BuildCustom(builder);
+
+            var container = builder.Build();
+
+            RegisterForMvc(container);
+            RegisterForOwin(app, container);
+            RegisterForWebApi(container);
+        }
+
+        private void BuildMvc(ContainerBuilder builder)
+        {
             // Register your MVC controllers.
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
@@ -29,21 +44,38 @@ namespace Messages.Web
 
             // OPTIONAL: Enable property injection into action filters.
             builder.RegisterFilterProvider();
+        }
 
+        private void BuildWebApi(ContainerBuilder builder)
+        {
+            // Register your Web API controllers.
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
+            // OPTIONAL: Register the Autofac filter provider.
+            builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
+        }
 
-            // Custom
+        private void BuildCustom(ContainerBuilder builder)
+        {
             builder.RegisterModule(new Business.AutofacModule());
+
             builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>().InstancePerRequest();
+        }
 
-
-
-            // Set the dependency resolver to be Autofac.
-            var container = builder.Build();
+        private void RegisterForMvc(IContainer container)
+        {
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+        }
 
+        private void RegisterForOwin(IAppBuilder app, IContainer container)
+        {
             app.UseAutofacMiddleware(container);
             app.UseAutofacMvc();
+        }
+
+        private void RegisterForWebApi(IContainer container)
+        {
+            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
     }
 }
