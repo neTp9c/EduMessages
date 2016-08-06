@@ -266,6 +266,7 @@
     <Compile Include="ViewModels\AccountManage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\Api\Account\RegisterVM.cs" />
     <Compile Include="ViewModels\Api\Account\UserVM.cs" />
     <Compile Include="ViewModels\Api\Message\MessageListVM.cs" />
     <Compile Include="ViewModels\Api\Message\MessageVM.cs" />

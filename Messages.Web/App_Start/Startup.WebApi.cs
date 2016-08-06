@@ -15,7 +15,10 @@ namespace Messages.Web
         public void ConfigureWebApi(IAppBuilder app)
         {
             HttpConfiguration config = new HttpConfiguration();
+
             config.MapHttpAttributeRoutes();
+
+            app.UseAutofacWebApi(config);
             app.UseWebApi(config);
         }
     }

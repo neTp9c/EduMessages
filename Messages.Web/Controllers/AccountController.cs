@@ -17,10 +17,6 @@ namespace Messages.Web.Controllers
         private UserManager _userManager;
         private IAuthenticationManager _authenticationManager;
 
-        public AccountController()
-        {
-        }
-
         public AccountController(
             UserManager userManager,
             SignInManager signInManager,

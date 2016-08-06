@@ -19,7 +19,7 @@ namespace Messages.Web.Controllers.Api
         }
 
         [Route("api/v1/messages")]
-        public MessageListVM GetMessages(int skip,  int take, string userId)
+        public MessageListVM GetMessages(int skip,  int take, string userId = null)
         {
             Expression<Func<Message, bool>> wherePredicate = null;
 
@@ -35,7 +35,7 @@ namespace Messages.Web.Controllers.Api
                 includePaths: new string[] { "User" }
             );
 
-            var messagesVM = _messagesManager.GetMessages(0, 10).Select(m => new MessageVM {
+            var messagesVM = messages.Select(m => new MessageVM {
                 id = m.Id,
                 userId = m.UserId,
                 body = m.Body,
