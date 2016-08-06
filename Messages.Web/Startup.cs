@@ -11,6 +11,7 @@ namespace Messages.Web
         {
             ConfigureAutofac(app);
             ConfigureAuth(app);
+            ConfigureWebApi(app);
         }
     }
 }
