@@ -6,6 +6,10 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 using Messages.Entities.Identity;
 using Messages.Business.Identity;
+using Microsoft.Owin.Security.OAuth;
+using System.Threading.Tasks;
+using Autofac;
+using Messages.Web.Services;
 
 namespace Messages.Web
 {
@@ -30,6 +34,20 @@ namespace Messages.Web
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
             });
+
+
+            var oAuthServerOptions = new OAuthAuthorizationServerOptions()
+            {
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                Provider = new SimpleAuthorizationServerProvider()
+            };
+
+            // Token Generation
+            app.UseOAuthAuthorizationServer(oAuthServerOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+
         }
     }
 }

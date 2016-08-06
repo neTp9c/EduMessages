@@ -18,6 +18,7 @@ namespace Messages.Web
 
             config.MapHttpAttributeRoutes();
 
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseAutofacWebApi(config);
             app.UseWebApi(config);
         }
