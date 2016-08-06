@@ -29,14 +29,16 @@ namespace Messages.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //var test = DbConfiguration.DependencyResolver.GetService(typeof(IMessagesContextAccessor), null); ;
+
             base.OnModelCreating(modelBuilder);
 
             // configure conventions
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             modelBuilder.Entity<Message>()
-                        .HasRequired<User>(s => s.User) // Student entity requires Standard 
-                        .WithMany(s => s.Messages); // Standard entity includes many Students entities
+                        .HasRequired<User>(s => s.User)
+                        .WithMany(s => s.Messages);
         }
     }
 }

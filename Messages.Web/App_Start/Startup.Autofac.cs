@@ -34,7 +34,7 @@ namespace Messages.Web
 
             // Custom
             builder.RegisterModule(new Business.AutofacModule());
-            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>().InstancePerRequest();
 
 
 

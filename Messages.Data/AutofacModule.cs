@@ -10,18 +10,20 @@ namespace Messages.Data
     {
         protected override void Load(ContainerBuilder builder)
         {
+            
+
             builder.RegisterType<MsSqlMessagesContext>().As<IMessagesContext>()
                 .WithMetadata("ConnectionStringProvider", ConnectionStringProviders.SqlClient)
                 .InstancePerRequest();
 
-            builder.RegisterType<SqLiteMessagesContext>().As<IMessagesContext>().InstancePerRequest()
+            builder.RegisterType<SqLiteMessagesContext>().As<IMessagesContext>()
                 .WithMetadata("ConnectionStringProvider", ConnectionStringProviders.SQLite)
                 .InstancePerRequest();
 
             builder.RegisterType<ConnectionStringSettingsAccessor>().As<IConnectionStringSettingsAccessor>().SingleInstance();
             builder.RegisterType<MessagesContextAccessor>().As<IMessagesContextAccessor>().InstancePerRequest();
 
-            builder.RegisterType<UserStore>();
+            builder.RegisterType<UserStore>().InstancePerRequest();
 
             base.Load(builder);
         }

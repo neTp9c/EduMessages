@@ -11,9 +11,9 @@ namespace Messages.Business
         {
             builder.RegisterModule(new Data.AutofacModule());
 
-            builder.RegisterType<MessagesManager>().As<IMessagesManager>().InstancePerLifetimeScope();
-            builder.RegisterType<UserManager>().InstancePerLifetimeScope();
-            builder.RegisterType<SignInManager>().InstancePerLifetimeScope();
+            builder.RegisterType<MessagesManager>().As<IMessagesManager>().InstancePerRequest();
+            builder.RegisterType<UserManager>().InstancePerRequest();
+            builder.RegisterType<SignInManager>().InstancePerRequest();
 
             base.Load(builder);
         }
