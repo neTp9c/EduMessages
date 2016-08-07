@@ -30,13 +30,13 @@ namespace Messages.Web.Controllers.Api
         [AllowAnonymous]
         public async Task<IHttpActionResult> Register(RegisterVM model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = new User { UserName = model.email, Email = model.email };
-            var result = await _userManager.CreateAsync(user, model.password);
+            var user = new User { UserName = model.Email, Email = model.Email };
+            var result = await _userManager.CreateAsync(user, model.Password);
 
             if(!result.Succeeded)
             {
