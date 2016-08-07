@@ -1,0 +1,27 @@
+﻿<h2>Messages</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            User
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Message
+        </th>
+        <th></th>
+    </tr>
+    <tr data-ng-repeat="message in messages">
+        <td>
+            {{ message.user.userName }}
+        </td>
+        <td>
+            {{ message.createdUtc }}
+        </td>
+        <td>
+            {{ message.body }}
+        </td>
+    </tr>
+</table>
