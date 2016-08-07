@@ -8,7 +8,8 @@ namespace Messages.Web.ViewModels.Api.Message
 {
     public class MessageListVM
     {
-        public IEnumerable<MessageVM> messages { get; set; }
-        public IEnumerable<UserVM> users { get; set; }
+        public IEnumerable<MessageVM> Messages { get; set; }
+        public IEnumerable<UserVM> Users { get; set; }
+        public int TotalMessagesCount { get; set; }
     }
 }

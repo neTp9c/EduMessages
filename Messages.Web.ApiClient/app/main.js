@@ -1,6 +1,7 @@
 ﻿var app = angular.module('MessagesApp', [
     'ngRoute',
     'LocalStorageModule',
+    'ui.bootstrap'
     //'angular-loading-bar',
 ]);
 

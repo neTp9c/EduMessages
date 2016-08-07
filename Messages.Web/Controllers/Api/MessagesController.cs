@@ -94,8 +94,9 @@ namespace Messages.Web.Controllers.Api
 
             var viewModel = new ViewModels.Api.Message.MessageListVM
             {
-                messages = messagesVM,
-                users = usersVM
+                Messages = messagesVM,
+                Users = usersVM,
+                TotalMessagesCount = _messagesManager.GetCount(wherePredicate)
             };
 
             return viewModel;
