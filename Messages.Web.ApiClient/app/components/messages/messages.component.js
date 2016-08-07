@@ -42,10 +42,16 @@ function messagesController($scope, authService, messagesService) {
 
             },
             function (error) {
-                $scope.message = 'Some error occur!';
+                $scope.message = 'Some error occurs!';
                 $scope.savedSuccessfully = false;
             }
         );
+    };
+
+    $scope.changeFilters = function (filter) {
+        $scope.userId = filter.userId;
+        $scope.currentPage = 1;
+        _loadMessages();
     };
 
     $scope.totalItems = 0;

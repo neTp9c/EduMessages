@@ -16,6 +16,9 @@
 <div data-ng-show="!authentication.isAuth">
     Only registered users can add new messages.
 </div>
+<div data-ng-show="userId">
+    <a data-ng-click="changeFilters({userId: ''})">Clear filters</a>
+</div>
 
 
 <h3>Previous messages</h3>
@@ -34,7 +37,7 @@
     </tr>
     <tr data-ng-repeat="message in messages">
         <td>
-            {{ message.user.userName }}
+            <a data-ng-click="changeFilters({userId: message.user.id })">{{ message.user.userName }}</a>
         </td>
         <td>
             {{ message.createdUtc }}
