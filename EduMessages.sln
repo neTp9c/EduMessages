@@ -13,6 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages.Web", "Messages.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages.Web.ApiClient", "Messages.Web.ApiClient\Messages.Web.ApiClient.csproj", "{F2C9BE7B-4F0D-4199-8157-122A514D41F4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9A17CB61-D95A-43B3-B685-F64AFA0D6F2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Selenium IDE FireFox", "Selenium IDE FireFox", "{7A7C665C-8DBE-4743-944F-4CF53D4D7BD0}"
+	ProjectSection(SolutionItems) = preProject
+		Tests\Selenium IDE FireFox\add message.html = Tests\Selenium IDE FireFox\add message.html
+		Tests\Selenium IDE FireFox\create user.html = Tests\Selenium IDE FireFox\create user.html
+		Tests\Selenium IDE FireFox\tests = Tests\Selenium IDE FireFox\tests
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +51,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7A7C665C-8DBE-4743-944F-4CF53D4D7BD0} = {9A17CB61-D95A-43B3-B685-F64AFA0D6F2E}
 	EndGlobalSection
 EndGlobal
