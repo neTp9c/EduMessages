@@ -7,7 +7,7 @@ namespace Messages.Web.ViewModels.Api.Account
 {
     public class UserVM
     {
-        public string id { get; set; }
-        public string userName { get; set; }
+        public string Id { get; set; }
+        public string UserName { get; set; }
     }
 }

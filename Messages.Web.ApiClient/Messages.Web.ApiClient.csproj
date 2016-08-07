@@ -83,6 +83,7 @@
     <Content Include="app\components\messages\messages.view.html" />
     <Content Include="app\core\components\login-menu\login-menu.component.js" />
     <Content Include="app\core\components\login-menu\login-menu.view.html" />
+    <Content Include="app\core\services\auth-interceptor.service.js" />
     <Content Include="content\site.css" />
     <Content Include="content\bootstrap-theme.css" />
     <Content Include="content\bootstrap-theme.min.css" />

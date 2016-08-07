@@ -8,6 +8,9 @@ function messagesController($scope, authService, messagesService) {
     $scope.newMessage = {
         body: ''
     };
+    $scope.savedSuccessfully = false;
+    $scope.message = "";
+
     $scope.messages = [];
     $scope.users = [];
 
@@ -24,6 +27,13 @@ function messagesController($scope, authService, messagesService) {
     $scope.authentication = authService.authentication;
 
     $scope.addMessage = function() {
+        messagesService.addMessage($scope.newMessage).then(
+            function (results) {
+                $scope.newMessage.body = '';
+            },
+            function (error) {
 
+            }
+        );
     };
 }

@@ -278,6 +278,7 @@
     <Compile Include="ViewModels\Api\Account\RegisterVM.cs" />
     <Compile Include="ViewModels\Api\Account\UserVM.cs" />
     <Compile Include="ViewModels\Api\Message\MessageListVM.cs" />
+    <Compile Include="ViewModels\Api\Message\MessageFullVM.cs" />
     <Compile Include="ViewModels\Api\Message\MessageVM.cs" />
     <Compile Include="ViewModels\Messages\MessageListVM.cs" />
     <Compile Include="ViewModels\Messages\MessageCreateVM.cs" />

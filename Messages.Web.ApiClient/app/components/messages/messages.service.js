@@ -4,7 +4,7 @@
     var messagesServiceFactory = {};
 
     var _addMessage = function (message) {
-        return $http.post(serviceBase + 'api/v1/messages', registration).then(function (response) {
+        return $http.post(serviceBase + 'api/v1/messages', message).then(function (response) {
             return response;
         });
     };

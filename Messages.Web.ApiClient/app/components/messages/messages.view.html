@@ -1,5 +1,24 @@
 ﻿<h2>Messages</h2>
 
+<h3>Add new message</h3>
+<form class="form-message" role="form" data-ng-show="authentication.isAuth">
+    <div class="form-group">
+        <label for="body">Message</label>
+        <textarea name="body" class="form-control" required autofocus data-ng-model="newMessage.body"></textarea>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-default" data-ng-click="addMessage()" />
+    </div>
+    <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+        {{message}}
+    </div>
+</form>
+<div data-ng-show="!authentication.isAuth">
+    Only registered users can add new messages.
+</div>
+
+
+<h3>Previous messages</h3>
 <table class="table">
     <tr>
         <th>

@@ -21,6 +21,10 @@ app.config(function ($routeProvider) {
     $routeProvider.otherwise({ redirectTo: "/" });
 });
 
+app.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptorService');
+});
+
 app.run(['authService', function (authService) {
     authService.fillAuthData();
 }]);
